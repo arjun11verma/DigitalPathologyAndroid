@@ -22,7 +22,7 @@ import com.example.digitalpath2020.ViewInterfaces.FormFillable;
 public class ConfirmCameraView extends BaseView implements FormFillable {
     private EditText slideName; // Name of the type of slide being used
     private EditText cancerName; // Name of the type of cancer
-    private EditText patientName; // Name of the patient
+    private EditText slideID; // Name of the patient
     private EditText devServerUrl;
 
     /**
@@ -37,7 +37,7 @@ public class ConfirmCameraView extends BaseView implements FormFillable {
 
         slideName = activity.findViewById(R.id.slideType);
         cancerName = activity.findViewById(R.id.cancerType);
-        patientName = activity.findViewById(R.id.patientName);
+        slideID = activity.findViewById(R.id.slideID);
         devServerUrl = activity.findViewById(R.id.devServerUrl);
         reloadOldValues(activity.getCurrentUser());
 
@@ -53,8 +53,8 @@ public class ConfirmCameraView extends BaseView implements FormFillable {
         activity.findViewById(R.id.startCameraPage).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                String[] formInputs = {slideName.getText().toString(), cancerName.getText().toString(), patientName.getText().toString(), devServerUrl.getText().toString()};
-                if (checkValidity(formInputs, new EditText[]{slideName, cancerName, patientName, devServerUrl},
+                String[] formInputs = {slideName.getText().toString(), cancerName.getText().toString(), slideID.getText().toString(), devServerUrl.getText().toString()};
+                if (checkValidity(formInputs, new EditText[]{slideName, cancerName, slideID, devServerUrl},
                         new String[]{"Please input a valid slide type!", "Please input a valid cancer type!", "Please input a valid accession number!"})) {
                     inputForm(formInputs);
                 }
@@ -65,7 +65,7 @@ public class ConfirmCameraView extends BaseView implements FormFillable {
     private void reloadOldValues(Patient currentUser) {
         if (currentUser.getSlide() != null) slideName.setText(currentUser.getSlide());
         if (currentUser.getCancer() != null) cancerName.setText(currentUser.getCancer());
-        if (currentUser.getSlideID() != null) patientName.setText(currentUser.getSlideID());
+        if (currentUser.getSlideID() != null) slideID.setText(currentUser.getSlideID());
         if (activity.getServerConnection().getServerUrl() != null) devServerUrl.setText(activity.getServerConnection().getServerUrl());
     }
 
@@ -99,9 +99,9 @@ public class ConfirmCameraView extends BaseView implements FormFillable {
 
     @Override
     public void inputForm(String formInputs[]) {
-        activity.getCurrentUser().setSlideID(formInputs[0]);
+        activity.getCurrentUser().setSlide(formInputs[0]);
         activity.getCurrentUser().setCancer(formInputs[1]);
-        activity.getCurrentUser().setSlide(formInputs[2]);
+        activity.getCurrentUser().setSlideID(formInputs[2]);
         activity.getServerConnection().setServerUrl(formInputs[3]);
         activity.changeView(new ImageCaptureView(activity, R.layout.activity_main)); // switches to picture capturing page
     }

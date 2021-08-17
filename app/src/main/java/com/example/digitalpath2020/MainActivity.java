@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
         this.database = new MDatabase();
         this.database.onCreate();
         this.serverConnection = new ServerConnect(this);
-        changeView(new ImageCaptureView(this, R.layout.activity_main));
+        changeView(new LoginView(this, R.layout.activity_main));
     }
 
     /**
@@ -167,12 +167,12 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
      */
     @Override
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
-        /*if (ImageTimer.getImageReady()) {
+        if (ImageTimer.getImageReady()) {
             baseMat = ImgProc.processFrame(inputFrame);
             matList.add(baseMat.clone());
             ImageTimer.setImageReady(false);
-        }*/
-        return inputFrame.rgba(); //(baseMat == null) ? baseMat : ImageProcessor.resizeScreen(baseMat, ImgProc.getAspectWidth(), ImgProc.getAspectHeight());
+        }
+        return (baseMat == null) ? baseMat : ImageProcessor.resizeScreen(baseMat, ImgProc.getAspectWidth(), ImgProc.getAspectHeight());
     }
 
     /**

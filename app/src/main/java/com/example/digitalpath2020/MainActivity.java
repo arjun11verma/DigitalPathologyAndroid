@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
         this.database = new MDatabase();
         this.database.onCreate();
         this.serverConnection = new ServerConnect(this);
-        changeView(new LoginView(this, R.layout.activity_main));
+        changeView(new LoginView(this, R.layout.login_activity));
     }
 
     /**

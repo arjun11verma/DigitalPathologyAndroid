@@ -51,7 +51,7 @@ public class ServerConnect {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    activity.setImageCurrentTime(response.getString("timeStamp"));
+                    activity.setImageCurrentTime(response.getString("timestamp"));
                     if ((response.getString("response")).equals("N")) {
                         activity.changeView(new UploadView(activity, R.layout.post_upload_activity, "Your stitching was NOT successful, please try again.", null));
                     } else {
@@ -76,7 +76,7 @@ public class ServerConnect {
     }
 
     public void sendUpload(final JSONObject postObject) {
-        String postUrl = serverUrl + "/upload_image";
+        String postUrl = "https://" + serverUrl + ".ngrok.io" + "/upload_image";
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, postUrl, postObject, new Response.Listener<JSONObject>() {
             @Override

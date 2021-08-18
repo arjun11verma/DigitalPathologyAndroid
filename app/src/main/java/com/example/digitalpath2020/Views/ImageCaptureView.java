@@ -26,7 +26,7 @@ public class ImageCaptureView extends BaseView {
         super(context, layout);
         checkLoggedIn(false);
 
-        activity.activateCamera((JavaCamera2View) activity.findViewById(R.id.camera));
+        activity.activateCamera((JavaCameraView) activity.findViewById(R.id.camera));
 
         activity.findViewById(R.id.startCamera).setOnClickListener(new View.OnClickListener() {
             @Override

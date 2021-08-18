@@ -41,8 +41,8 @@ public class ImageProcessor {
         Mat mRGBAT = mRGBA.t();
         Core.flip(mRGBA.t(), mRGBAT, 1);
         if (!centered) defineBoundaries(mRGBAT);
-        Imgproc.cvtColor(mRGBAT, mRGBAT, Imgproc.COLOR_BGR2RGB);
-        return (mRGBAT);
+        //Imgproc.cvtColor(mRGBAT, mRGBAT, Imgproc.COLOR_BGR2RGB);
+        return removeBlackSpace(mRGBAT);
     }
 
     private void defineBoundaries(Mat inputMat) {

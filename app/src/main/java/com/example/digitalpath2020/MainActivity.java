@@ -27,6 +27,7 @@ import com.example.digitalpath2020.Views.LoginView;
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
 import org.opencv.android.JavaCamera2View;
+import org.opencv.android.JavaCameraView;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
 import org.opencv.core.Core;
@@ -38,7 +39,7 @@ import java.util.List;
 import io.realm.mongodb.App;
 
 public class MainActivity extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2 {
-    private JavaCamera2View cameraView; // View that will be accessing the camera, taking pictures and displaying them
+    private JavaCameraView cameraView; // View that will be accessing the camera, taking pictures and displaying them
     private List<Mat> matList; // List of processed Mat objects for uploading and displaying
     private Patient currentUser;
 
@@ -100,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
      * Sets the JavaCameraView class to take input from the phone's camera
      * @param camera JavaCameraView to be activated
      */
-    public void activateCamera(JavaCamera2View camera) {
+    public void activateCamera(JavaCameraView camera) {
         cameraView = camera;
         cameraView.setVisibility(SurfaceView.VISIBLE);
         cameraView.setCvCameraViewListener(this);
